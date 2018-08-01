@@ -69,6 +69,7 @@ from openstack.cloud_eye import cloud_eye_service
 from openstack.compute import compute_service
 from openstack.cts import cts_service
 from openstack.dms import dms_service
+from openstack.dcs import dcs_service
 from openstack.dns import dns_service
 from openstack.ecs import ecs_service
 from openstack.evs import evs_service
@@ -122,6 +123,7 @@ class Profile(object):
         self._add_service(compute_service.ComputeService(version="v2"))
         self._add_service(cts_service.CTSService(version="v1"))
         self._add_service(dms_service.DMSService(version="v1"))
+        self._add_service(dcs_service.DCSService(version="v1"))
         self._add_service(identity_service.IdentityService(version="v3"))
         self._add_service(image_service.ImageService(version="v2"))
         self._add_service(kms_service.KMSService(version="v1"))
