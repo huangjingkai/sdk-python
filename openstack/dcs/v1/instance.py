@@ -18,7 +18,8 @@ from openstack import utils
 
 class Instance(_dcsresource.Resource):
 
-    base_path = '/instances'
+    base_path = "/instances"
+    # base_path = '/instances'
     resource_key = 'instance'
     resources_key = 'instances'
     service = dcs_service.DCSService()
@@ -49,3 +50,23 @@ class Instance(_dcsresource.Resource):
     maintain_end = resource.Body('maintain_end')
 
     restorePoint = resource.Body("restorePoint", type=dict)
+
+    _query_mapping = resource.QueryParameters(
+        "start", "limit", "name", "id", "status", "includeFailure", "isExactMatchName",
+    )
+
+class InstanceDetails(_dcsresource.Resource):
+
+    base_path = "/instances/%(instanceId)s"
+    # base_path = '/instances'
+    resource_key = 'instance'
+    resources_key = 'instances'
+    service = dcs_service.DCSService()
+    instanceId = resource.URI('instanceId')
+
+    # capabilities
+    allow_get = True
+
+    _query_mapping = resource.QueryParameters(
+        "project_id", "instance_id",
+    )

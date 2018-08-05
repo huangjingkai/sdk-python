@@ -19,5 +19,9 @@ class Proxy(proxy2.BaseProxy):
     def create_instance(self, **kwargs):
         return self._create(_instance.Instance, **kwargs)
 
-    def instances(self):
-        return self._list(_instance.Instance, paginated=False)
+    def instances(self, **kwargs):
+        return self._list(_instance.Instance, paginated=False, **kwargs)
+
+    def instance_details(self, **kwargs):
+    	instanceId = kwargs["instance_id"]
+        return self._list(_instance.InstanceDetails, paginated=False, instanceId = instanceId, **kwargs)
